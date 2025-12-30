@@ -1,0 +1,553 @@
+/* ========================================
+   ƏSAS SIFIRLAMA VƏ ÜMUMI STILLƏR
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+
+/* ========================================
+   NAVİQASİYA (Üst menyu)
+   ======================================== */
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.5s ease;
+    padding: 24px 40px;
+}
+
+/* Scroll edəndə naviqasiyaya arxa fon əlavə olunur */
+nav.scrolled {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 8px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #999;
+}
+
+
+/* ========================================
+   HERO BÖLMƏSİ (Ana görünüş)
+   ======================================== */
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000 50%, #1a1a1a 100%);
+    transition: transform 0.1s ease-out;
+}
+
+.hero-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #2a2a2a 0%, #0a0a0a 100%);
+    opacity: 0.2;
+}
+
+/* Hero şəkil stili (əgər şəkil əlavə etsəniz) */
+.hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 20px;
+    max-width: 1200px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 8vw, 120px);
+    font-weight: 300;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s ease-out forwards;
+}
+
+.hero h1:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.hero p {
+    font-size: clamp(18px, 2vw, 28px);
+    font-weight: 300;
+    color: #999;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 0.4s forwards;
+}
+
+/* Aşağı ox göstəricisi */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    animation: bounce 2s infinite;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+}
+
+.scroll-indicator svg {
+    width: 32px;
+    height: 32px;
+}
+
+
+/* ========================================
+   İŞLƏR BÖLMƏSİ
+   ======================================== */
+
+.work-section {
+    padding: 120px 40px;
+    background: #000;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-header {
+    margin-bottom: 80px;
+}
+
+.section-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.section-title {
+    font-size: clamp(36px, 5vw, 72px);
+    font-weight: 300;
+    letter-spacing: -1px;
+}
+
+/* Layihələr grid sistemi */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 60px;
+}
+
+.project-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.project-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-image {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    background: #111;
+    border-radius: 2px;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120px;
+    font-weight: 100;
+    color: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+}
+
+.project-category {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.project-title {
+    font-size: 32px;
+    font-weight: 300;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.project-description {
+    color: #999;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: gap 0.3s;
+}
+
+.project-link:hover {
+    gap: 12px;
+}
+
+
+/* ========================================
+   HAQQIMDA BÖLMƏSİ
+   ======================================== */
+
+.about-section {
+    padding: 120px 40px;
+    background: #0a0a0a;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+}
+
+.about-content p {
+    color: #999;
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.stat-number {
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #666;
+}
+
+.about-image {
+    position: relative;
+    height: 600px;
+    background: #111;
+    border-radius: 2px;
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.about-image-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 200px;
+    font-weight: 100;
+    color: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+}
+
+
+/* ========================================
+   ƏLAQƏ BÖLMƏSİ
+   ======================================== */
+
+.contact-section {
+    padding: 120px 40px;
+    background: #000;
+}
+
+.contact-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-content p {
+    color: #999;
+    line-height: 1.8;
+    margin: 32px 0 48px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.btn {
+    padding: 18px 48px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: all 0.3s;
+    border-radius: 2px;
+}
+
+.btn-primary {
+    background: #fff;
+    color: #000;
+}
+
+.btn-primary:hover {
+    background: #e0e0e0;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #333;
+}
+
+.btn-secondary:hover {
+    border-color: #666;
+}
+
+/* Sosial media linkləri */
+.social-links {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+}
+
+.social-links a {
+    color: #666;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #fff;
+}
+
+.social-links svg {
+    width: 24px;
+    height: 24px;
+}
+
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+footer {
+    padding: 40px;
+    background: #000;
+    border-top: 1px solid #111;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright {
+    font-size: 12px;
+    color: #666;
+}
+
+.footer-links {
+    display: flex;
+    gap: 32px;
+}
+
+.footer-links a {
+    font-size: 12px;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+
+/* ========================================
+   ANİMASİYALAR
+   ======================================== */
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE (Mobil uyğunlaşdırma)
+   ======================================== */
+
+@media (max-width: 768px) {
+    nav {
+        padding: 20px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .about-stats {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 16px;
+        letter-spacing: 4px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .work-section,
+    .about-section,
+    .contact-section {
+        padding: 80px 20px;
+    }
+
+    .section-header {
+        margin-bottom: 60px;
+    }
+}
